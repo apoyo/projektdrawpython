@@ -7,7 +7,11 @@ root = tk.Tk()
 root.geometry("500x500")
 
 root.title("Rysowanie Wykresów")
-
+def clearFrame():
+    # destroy all widgets from frame
+    print("CLIRFREJM")
+    for widget in frame.winfo_children():
+       widget.destroy()
 #image = Image.open("graph.png")
 #resize_image =  image.resize((100,100))
 #img =  ImageTk.PhotoImage(resize_image)
@@ -45,6 +49,7 @@ def login():
         if result_final==password:
            print("Jestesmy w miejscu docelowym")
            messagebox.showinfo(title="info",message="Jestes Zalogowany")
+           frame.pack_forget()
         else:
            messagebox.showinfo(title="info",message="Haslo jest nieprawidłowe")
      
@@ -59,6 +64,9 @@ def login():
              cursor.execute(insert_query,insert_tuple)
              conn.commit()
              messagebox.showinfo(title="info",message="Jestes Zalogowany")
+             frame.pack_forget()
+             
+            
         else:
             messagebox.showinfo(title="Kursor",message= 'Nie załozono konta')
              
@@ -78,7 +86,9 @@ def login():
     #  print("Invalid login")
 
 
- 
+#frame2 = tk.Frame(bg='#333333')
+#label2 = tk.Label(frame,text = "LOgowanie DWA",font=('Arial',30),bg='#333333',fg='#FFFFFF' )
+#label2.grid(row=0,column=2,sticky="news",columnspan=2,pady=40)
 frame= tk.Frame(bg='#333333')
 label = tk.Label(frame,text = "Logowanie",font=('Arial',30),bg='#333333',fg='#FFFFFF' )
 label.grid(row=0,column=2,sticky="news",columnspan=2,pady=40)
@@ -111,4 +121,8 @@ button = tk.Button(frame, text="Click Me!", font = ('Arial', 18 ))
 
 #button.pack(padx=10,pady=10)
 frame.pack()
+
+def newwindow():
+    frame.pack_forget()
 root.mainloop()
+
