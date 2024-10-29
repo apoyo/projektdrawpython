@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import ttk
 from tkinter import *
 from PIL import Image, ImageTk
 import sqlite3
@@ -49,7 +50,12 @@ def login():
         if result_final==password:
            print("Jestesmy w miejscu docelowym")
            messagebox.showinfo(title="info",message="Jestes Zalogowany")
-           frame.pack_forget()
+           frame.destroy()
+           print("FINAL PACK")
+           root.configure(bg='#FFFFFF') 
+           frame_final.pack()
+          
+
         else:
            messagebox.showinfo(title="info",message="Haslo jest nieprawidłowe")
      
@@ -64,14 +70,14 @@ def login():
              cursor.execute(insert_query,insert_tuple)
              conn.commit()
              messagebox.showinfo(title="info",message="Jestes Zalogowany")
-             frame.pack_forget()
-             
+             frame.destroy()
+             root.configure(bg='#FFFFFF') 
+             frame_final.pack()
             
         else:
             messagebox.showinfo(title="Kursor",message= 'Nie załozono konta')
              
-        
-
+    
     #password = ''''''
     #if(myEntryLogin.get()== ,myEntryPassword.get()== )
 
@@ -90,6 +96,7 @@ def login():
 #label2 = tk.Label(frame,text = "LOgowanie DWA",font=('Arial',30),bg='#333333',fg='#FFFFFF' )
 #label2.grid(row=0,column=2,sticky="news",columnspan=2,pady=40)
 frame= tk.Frame(bg='#333333')
+frame_final = tk.Frame(bg='#FFFFFF')
 label = tk.Label(frame,text = "Logowanie",font=('Arial',30),bg='#333333',fg='#FFFFFF' )
 label.grid(row=0,column=2,sticky="news",columnspan=2,pady=40)
 myLabelLogin = tk.Label(frame,text = "Login",bg='#333333',fg='#FFFFFF',font=('Arial',16) )
@@ -102,15 +109,19 @@ myLabelPassword.grid(row=2,column=1)
 myEntryLogin.grid(row=1,column=2,pady=20)
 myEntryPassword.grid(row=2,column=2,pady=20)
 loginButton.grid(row=3,column=2,columnspan=2,pady=30)
-
+#graphType = tk.Listbox(frame_final)
+#graphType.insert(1,"Python")
+#graphType.insert(2,"Python")
 #myEntryLogin.pack(padx=3,pady=3)
 #myEntryPassword.pack(padx=3,pady=3)
 
-
+#graphtype = Listbox(frame_final,)
 
 #loginButton.pack()
-
-
+n = tk.StringVar() 
+graphchoose = ttk.Combobox(frame_final ,width=27, textvariable = n )
+graphchoose['values'] = ('Wykres słupkowy','Wykres kolumnowy','Cokolwiek3','Cokolwiek4')
+graphchoose.grid(column = 1, row = 5) 
 inputtxt = tk.Text(frame, height=3)
 #inputtxt.pack(padx=10,pady=10)
 
@@ -121,6 +132,7 @@ button = tk.Button(frame, text="Click Me!", font = ('Arial', 18 ))
 
 #button.pack(padx=10,pady=10)
 frame.pack()
+
 
 def newwindow():
     frame.pack_forget()
