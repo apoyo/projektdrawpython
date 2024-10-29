@@ -25,6 +25,29 @@ def clearFrame():
 
 #pack, place ,grid
 
+def dot_plot():
+    print('Wykres punktowy')
+def line_graph():
+    print('Wykres liniowy')
+def bar_chart():
+    print('Wykres słupkowy')
+def pie_chart():
+    print('Wykres kołowy')
+
+def graphchoosen(event):
+    print("Funkcja się uruchamia!")
+    if n.get()=="Wykres punktowy":
+        #print('Wykres punktowy')
+        dot_plot()
+    elif n.get()=="Wykres liniowy":
+        #print('Wykres liniowy')
+        line_graph()
+    elif n.get()=="Wykres słupkowy":
+        #print('Wykres słupkowy')
+        bar_chart()
+    else:
+        #print('Wykres kołowy')
+        pie_chart()
 
 root.configure(bg='#333333') 
 def login():
@@ -54,7 +77,8 @@ def login():
            print("FINAL PACK")
            root.configure(bg='#FFFFFF') 
            frame_final.pack()
-          
+           graphchoosen(Event)
+           
 
         else:
            messagebox.showinfo(title="info",message="Haslo jest nieprawidłowe")
@@ -73,7 +97,8 @@ def login():
              frame.destroy()
              root.configure(bg='#FFFFFF') 
              frame_final.pack()
-            
+             if(graphchoose.get()=='Wykres liniowy'):
+                 print("Wykres Liniowy")
         else:
             messagebox.showinfo(title="Kursor",message= 'Nie załozono konta')
              
@@ -118,10 +143,13 @@ loginButton.grid(row=3,column=2,columnspan=2,pady=30)
 #graphtype = Listbox(frame_final,)
 
 #loginButton.pack()
-n = tk.StringVar() 
+n = tk.StringVar()
 graphchoose = ttk.Combobox(frame_final ,width=27, textvariable = n )
-graphchoose['values'] = ('Wykres słupkowy','Wykres kolumnowy','Cokolwiek3','Cokolwiek4')
+graphchoose['values'] = ('Wykres liniowy','Wykres punktowy','Wykres słupkowy','Wykres kołowy')
+graphchoose['state'] = 'readonly'
 graphchoose.grid(column = 1, row = 5) 
+graphchoose.current(1) 
+
 inputtxt = tk.Text(frame, height=3)
 #inputtxt.pack(padx=10,pady=10)
 
@@ -136,5 +164,7 @@ frame.pack()
 
 def newwindow():
     frame.pack_forget()
+
+graphchoose.bind('<<ComboboxSelected>>',graphchoosen)
 root.mainloop()
 
