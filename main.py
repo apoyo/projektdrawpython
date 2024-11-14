@@ -2,7 +2,11 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 from tkinter import *
-from PIL import Image, ImageTk
+from dot_plot import * 
+from bar_chart import *
+from line_graph import *
+from pie_chart import *
+#from PIL import Image, ImageTk
 import sqlite3
 root = tk.Tk()
 root.geometry("500x500")
@@ -25,14 +29,8 @@ def clearFrame():
 
 #pack, place ,grid
 
-def dot_plot():
-    print('Wykres punktowy')
-def line_graph():
-    print('Wykres liniowy')
-def bar_chart():
-    print('Wykres słupkowy')
-def pie_chart():
-    print('Wykres kołowy')
+
+
 
 def graphchoosen(event):
     print("Funkcja się uruchamia!")
