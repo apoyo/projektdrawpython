@@ -6,6 +6,8 @@ from dot_plot import *
 from bar_chart import *
 from line_graph import *
 from pie_chart import *
+import matplotlib.pyplot as plt
+import numpy as np
 #from PIL import Image, ImageTk
 import sqlite3
 root = tk.Tk()
@@ -29,17 +31,15 @@ def clearFrame():
 
 #pack, place ,grid
 
-
-
-
+#root.forget()
 def graphchoosen(event):
     print("Funkcja się uruchamia!")
     if n.get()=="Wykres punktowy":
         #print('Wykres punktowy')
-        dot_plot()
+        dot_plot(frejm)
     elif n.get()=="Wykres liniowy":
         #print('Wykres liniowy')
-        line_graph()
+        line_graph(frejm)
     elif n.get()=="Wykres słupkowy":
         #print('Wykres słupkowy')
         bar_chart()
@@ -118,7 +118,8 @@ def login():
 #frame2 = tk.Frame(bg='#333333')
 #label2 = tk.Label(frame,text = "LOgowanie DWA",font=('Arial',30),bg='#333333',fg='#FFFFFF' )
 #label2.grid(row=0,column=2,sticky="news",columnspan=2,pady=40)
-frame= tk.Frame(bg='#333333')
+frejm =tk.Frame(root,bg="WHITE")
+frame = tk.Frame(bg='#333333')
 frame_final = tk.Frame(bg='#FFFFFF')
 label = tk.Label(frame,text = "Logowanie",font=('Arial',30),bg='#333333',fg='#FFFFFF' )
 label.grid(row=0,column=2,sticky="news",columnspan=2,pady=40)
@@ -132,6 +133,7 @@ myLabelPassword.grid(row=2,column=1)
 myEntryLogin.grid(row=1,column=2,pady=20)
 myEntryPassword.grid(row=2,column=2,pady=20)
 loginButton.grid(row=3,column=2,columnspan=2,pady=30)
+
 #graphType = tk.Listbox(frame_final)
 #graphType.insert(1,"Python")
 #graphType.insert(2,"Python")
