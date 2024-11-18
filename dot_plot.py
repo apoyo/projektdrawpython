@@ -3,14 +3,16 @@ import numpy as np
 import tkinter as tk
 from tkinter import ttk
 
-def entryquantity(event,n,frejm):
+def entryquantity(event_or_value,n,frame4):
     print('Klantity dziala')
-    for x in range(n.get()+1):
+    
+    for widget in frame4.winfo_children():
+        widget.destroy()
+    for x in range(n.get()):           
         print(x)
-    global entry1
-    entry1.destroy()
-  
-        
+        x = tk.Entry(frame4)
+        x.pack()
+        frame4.pack()
 
 def dot_plot(frejm):
     
@@ -36,11 +38,13 @@ def dot_plot(frejm):
     entry_quantity.pack()
     entry_quantity.current(2)
     #frame_graph=tk.Frame(bg='#FFFFFF')
-    entry1 = tk.Entry(frejm)
-    entry2 = tk.Entry(frejm)
-    entry1.pack()
-    entry2.pack()
-    entry_quantity.bind('<<ComboboxSelected>>',lambda event: entryquantity(event, n,frejm)) 
+    #entry1 = tk.Entry(frejm)
+    #ntry2 = tk.Entry(frejm)
+    #entry1.pack()
+    #entry2.pack()
+    frame4 = tk.Frame(frejm)
+    entryquantity(None,n,frame4)
+    entry_quantity.bind('<<ComboboxSelected>>',lambda event: entryquantity(event, n,frame4)) 
     
 
     
