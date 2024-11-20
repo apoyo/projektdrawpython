@@ -42,10 +42,10 @@ def graphchoosen(event):
         line_graph(frejm)
     elif n.get()=="Wykres słupkowy":
         #print('Wykres słupkowy')
-        bar_chart()
+        bar_chart(frejm)
     else:
         #print('Wykres kołowy')
-        pie_chart()
+        pie_chart(frejm)
 
 root.configure(bg='#333333') 
 def login():
@@ -139,9 +139,7 @@ loginButton.grid(row=3,column=2,columnspan=2,pady=30)
 #graphType.insert(2,"Python")
 #myEntryLogin.pack(padx=3,pady=3)
 #myEntryPassword.pack(padx=3,pady=3)
-
 #graphtype = Listbox(frame_final,)
-
 #loginButton.pack()
 n = tk.StringVar()
 graphchoose = ttk.Combobox(frame_final ,width=27, textvariable = n )
