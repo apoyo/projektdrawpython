@@ -5,12 +5,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tkinter as tk
 from tkinter import ttk
+import os 
 entry_x = {}
 entry_y = {}
 entry_tick_label = {}
 label_x_y = {}
 frame_quantity = {}
-def create_graph(name_axis_x,name_axis_y,entry_title,n):
+
+def create_graph(name_axis_x,name_axis_y,entry_title,n,username):
     print(name_axis_x.get())
     print("Drukuje dlugosc tablicy")
     values_array_x=[]
@@ -31,6 +33,12 @@ def create_graph(name_axis_x,name_axis_y,entry_title,n):
     plt.xlabel(name_axis_x.get())
     plt.ylabel(name_axis_y.get())
     plt.title(entry_title.get())
+    path_of_file = os.getcwd()+ '\\' + username
+    print("Drukuje login")
+    print(username)
+    print("DRUKUJE PATH OF FILE")
+    print(path_of_file)
+    plt.rcParams["savefig.directory"] = path_of_file
     plt.show()
 def entryquantity(event_or_value,n,frame4):
     print('Klantity dziala')
@@ -59,11 +67,13 @@ def entryquantity(event_or_value,n,frame4):
 
 
 
-def bar_chart(frejm):
+def bar_chart(frejm,username):
     print('Wykres słupkowy')
     for widget in frejm.winfo_children():
         widget.destroy()
-   
+    
+    print("Drukuje login w bar_chart")
+    print(username)
     frejm.pack()
     title=tk.Label(frejm,text="Wpisz Tytuł")
     title.pack()
@@ -96,7 +106,7 @@ def bar_chart(frejm):
     frame4 = tk.Frame(frejm)
     entryquantity(None,n,frame4)
     entry_quantity.bind('<<ComboboxSelected>>',lambda event: entryquantity(event, n,frame4)) 
-    create_graph_button = tk.Button(frejm,text="Utwórz Wykres",command=lambda: create_graph(name_axis_x,name_axis_y,entry_title,n))
+    create_graph_button = tk.Button(frejm,text="Utwórz Wykres",command=lambda: create_graph(name_axis_x,name_axis_y,entry_title,n,username))
     create_graph_button.pack()
     
     

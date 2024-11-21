@@ -10,9 +10,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 #from PIL import Image, ImageTk
 import sqlite3
+from tkinter import filedialog
+import os 
 root = tk.Tk()
 root.geometry("500x500")
-
 root.title("Rysowanie Wykresów")
 def clearFrame():
     # destroy all widgets from frame
@@ -33,24 +34,30 @@ def clearFrame():
 
 #root.forget()
 def graphchoosen(event):
+    global username
     print("Funkcja się uruchamia!")
     if n.get()=="Wykres punktowy":
         #print('Wykres punktowy')
-        dot_plot(frejm)
+        dot_plot(frejm,username)
     elif n.get()=="Wykres liniowy":
         #print('Wykres liniowy')
-        line_graph(frejm)
+        line_graph(frejm,username)
     elif n.get()=="Wykres słupkowy":
         #print('Wykres słupkowy')
-        bar_chart(frejm)
+        print("drukuje USERNAME PRZY WYBRANIU wykresu słupkowego")
+        print(username)
+        bar_chart(frejm,username)
     else:
         #print('Wykres kołowy')
-        pie_chart(frejm)
+        pie_chart(frejm,username)
 
 root.configure(bg='#333333') 
 def login():
     conn = sqlite3.connect('data.db')
+    global username
     username = myEntryLogin.get()
+    print("JUSERNEJM")
+    print(username)
     password = myEntryPassword.get()
     table_create_query= '''CREATE TABLE IF NOT EXISTS logins(id INTEGER PRIMARY KEY,login varchar(25),password varchar(15),last_seen date ) '''
     conn.execute(table_create_query)
@@ -85,8 +92,10 @@ def login():
         confirm = messagebox.askyesno(title="",message="Brak konta czy chcesz je założyć ?")
         print(confirm)
         if confirm:
+             
              insert_query ='''INSERT INTO logins (login,password) VALUES(?,?)'''
              print("dodaje_raz")
+             os.makedirs(myEntryLogin.get())
              insert_tuple = (myEntryLogin.get(),myEntryPassword.get())
              cursor = conn.cursor()
              cursor.execute(insert_query,insert_tuple)
@@ -133,7 +142,7 @@ myLabelPassword.grid(row=2,column=1)
 myEntryLogin.grid(row=1,column=2,pady=20)
 myEntryPassword.grid(row=2,column=2,pady=20)
 loginButton.grid(row=3,column=2,columnspan=2,pady=30)
-
+username = myEntryLogin.get()
 #graphType = tk.Listbox(frame_final)
 #graphType.insert(1,"Python")
 #graphType.insert(2,"Python")

@@ -10,11 +10,12 @@ import numpy as np
 import tkinter as tk
 from tkinter import ttk
 from tkinter import colorchooser
+import os 
 slices = {}
 colors = {}
 activities = {}
 frame_quantity = {}
-def create_graph(entry_title,n):
+def create_graph(entry_title,n,username):
     #print(name_axis_x.get())
     #print("Drukuje dlugosc tablicy")
     slices_list = []
@@ -26,7 +27,13 @@ def create_graph(entry_title,n):
         activities_list.append(activities[x].get())
         color_list.append(colors[x])
         explode_list.append('0')
-
+    path_of_file = os.getcwd()+ '\\' + username
+    print("Drukuje login")
+    print(username)
+    print("DRUKUJE PATH OF FILE")
+    print(path_of_file)
+    plt.rcParams["savefig.directory"] = path_of_file
+    
    
     plt.pie(slices_list,labels=activities_list, colors=color_list,startangle=90, shadow = True,
         radius = 1.2, autopct = '%1.1f%%')
@@ -56,7 +63,7 @@ def entryquantity(event_or_value,n,frame4):
         frame4.pack()
         frame_quantity[x].pack()
 
-def pie_chart(frejm):
+def pie_chart(frejm,username):
     print('Wykres kołowy')
     for widget in frejm.winfo_children():
         widget.destroy()
@@ -78,7 +85,7 @@ def pie_chart(frejm):
     frame4 = tk.Frame(frejm)
     entryquantity(None,n,frame4)
     entry_quantity.bind('<<ComboboxSelected>>',lambda event: entryquantity(event, n,frame4)) 
-    create_graph_button = tk.Button(frejm,text="Utwórz Wykres",command=lambda: create_graph(entry_title,n))
+    create_graph_button = tk.Button(frejm,text="Utwórz Wykres",command=lambda: create_graph(entry_title,n,username))
     create_graph_button.pack()
     
 
