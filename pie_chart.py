@@ -10,6 +10,7 @@ import numpy as np
 import tkinter as tk
 from tkinter import ttk
 from tkinter import colorchooser
+from see_graphs import *
 import os 
 slices = {}
 colors = {}
@@ -39,6 +40,8 @@ def create_graph(entry_title,n,username):
         radius = 1.2, autopct = '%1.1f%%')
     
     plt.legend()
+    filename = path_of_file + '\\' + entry_title.get() + '.png'
+    plt.savefig(filename)
     plt.show()
 def entryquantity(event_or_value,n,frame4):
     print('Klantity dziala')

@@ -47,11 +47,12 @@ def see_graphs(username):
     global image_label,image_files,current_image_index
     image_label =  Label(root2)
     image_label.pack()
-    keyboard.on_press_key('right',lambda event: next_image())
-    keyboard.on_press_key('left',lambda event: previous_image())
+    #keyboard.on_press_key('right',lambda event: next_image())
+    #keyboard.on_press_key('left',lambda event: previous_image())
     next_button = Button(root2,text="Następny",command=next_image)
     previous_button = Button(root2,text="Poprzedni",command=previous_image)
-    
+    root2.bind("<Right>",lambda event: next_image() )
+    root2.bind("<Left>", lambda event: previous_image())
     next_button.pack(side='right',fill="both",expand=True)
     previous_button.pack(side='left',fill="both",expand=True)
    

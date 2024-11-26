@@ -41,6 +41,8 @@ def create_graph(name_axis_x,name_axis_y,entry_title,n,username):
     print("DRUKUJE PATH OF FILE")
     print(path_of_file)
     plt.rcParams["savefig.directory"] = path_of_file
+    filename = path_of_file + '\\' + entry_title.get() + '.png'
+    plt.savefig(filename)
     plt.show()
 def entryquantity(event_or_value,n,frame4):
     print('Klantity dziala')

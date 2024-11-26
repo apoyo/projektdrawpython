@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tkinter as tk
 from tkinter import ttk
+from see_graphs import *
 import os 
 entry_x = {}
 entry_y = {}
@@ -43,6 +44,8 @@ def create_graph(name_axis_x,name_axis_y,entry_title,n,username):
     print(path_of_file)
     plt.rcParams["savefig.directory"] = path_of_file
     plt.title(entry_title.get())
+    filename = path_of_file + '\\' + entry_title.get() + '.png'
+    plt.savefig(filename)
     plt.show()
 def entryquantity(event_or_value,n,frame4):
     print('Klantity dziala')
