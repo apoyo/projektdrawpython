@@ -32,8 +32,8 @@ def create_graph(name_axis_x,name_axis_y,entry_title,n,username):
     print(values_array_x,values_array_y)
     plt.plot(values_array_x,values_array_y)
     
-    #plt.ylim(min_y-2,max_y+2)
-    #plt.xlim(min_x-2,max_x+2)
+    plt.ylim(min_y-2,max_y+2)
+    plt.xlim(min_x-2,max_x+2)
     plt.xlabel(name_axis_x.get())
     plt.ylabel(name_axis_y.get())
     path_of_file = os.getcwd()+ '\\' + username
@@ -98,6 +98,8 @@ def line_graph(frejm,username):
     entryquantity(None,n,frame4)
     entry_quantity.bind('<<ComboboxSelected>>',lambda event: entryquantity(event, n,frame4)) 
     create_graph_button = tk.Button(frejm,text="Utwórz Wykres",command=lambda: create_graph(name_axis_x,name_axis_y,entry_title,n,username))
+    see_graphs_button=tk.Button(frejm, text="Zobacz swoje wykresy",command=lambda: see_graphs(username))
+    see_graphs_button.pack()
     create_graph_button.pack()
     
     

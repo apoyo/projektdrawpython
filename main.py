@@ -6,12 +6,14 @@ from dot_plot import *
 from bar_chart import *
 from line_graph import *
 from pie_chart import *
+#from see_graphs import *
 import matplotlib.pyplot as plt
 import numpy as np
 #from PIL import Image, ImageTk
 import sqlite3
 from tkinter import filedialog
 import os 
+import keyboard
 root = tk.Tk()
 root.geometry("500x500")
 root.title("Rysowanie Wykresów")

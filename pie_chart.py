@@ -86,6 +86,8 @@ def pie_chart(frejm,username):
     entryquantity(None,n,frame4)
     entry_quantity.bind('<<ComboboxSelected>>',lambda event: entryquantity(event, n,frame4)) 
     create_graph_button = tk.Button(frejm,text="Utwórz Wykres",command=lambda: create_graph(entry_title,n,username))
+    see_graphs_button=tk.Button(frejm, text="Zobacz swoje wykresy",command=lambda: see_graphs(username))
+    see_graphs_button.pack()
     create_graph_button.pack()
     
 

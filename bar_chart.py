@@ -1,6 +1,7 @@
 from dot_plot import * 
 from bar_chart import *
 from pie_chart import *
+from see_graphs import *
 import matplotlib.pyplot as plt
 import numpy as np
 import tkinter as tk
@@ -12,6 +13,7 @@ entry_tick_label = {}
 label_x_y = {}
 frame_quantity = {}
 
+    
 def create_graph(name_axis_x,name_axis_y,entry_title,n,username):
     print(name_axis_x.get())
     print("Drukuje dlugosc tablicy")
@@ -107,6 +109,8 @@ def bar_chart(frejm,username):
     entryquantity(None,n,frame4)
     entry_quantity.bind('<<ComboboxSelected>>',lambda event: entryquantity(event, n,frame4)) 
     create_graph_button = tk.Button(frejm,text="Utwórz Wykres",command=lambda: create_graph(name_axis_x,name_axis_y,entry_title,n,username))
+    see_graphs_button=tk.Button(frejm, text="Zobacz swoje wykresy",command=lambda: see_graphs(username))
+    see_graphs_button.pack()
     create_graph_button.pack()
     
     
