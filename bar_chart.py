@@ -52,18 +52,15 @@ def entryquantity(event_or_value,n,frame4):
     for x in range(n.get()):           
         print(x)
         frame_quantity[x]=tk.Frame(frame4)
-        entry_x[x]= tk.Entry(frame_quantity[x],width=2)
-        entry_y[x]=tk.Entry(frame_quantity[x],width=2)
-        label_x=tk.Label(frame_quantity[x],width=2,text="Lewa strona słupka")
-        label_y=tk.Label(frame_quantity[x],width=2,text="Prawa strona słupka")
-        tick_label = tk.Label(frame_quantity[x],width=5,text="Etykieta")
-        entry_tick_label[x] = tk.Entry(frame_quantity[x],width=5)
-        label_x.pack(side=tk.LEFT)
-        label_y.pack(side=tk.RIGHT)
+        
+        entry_tick_label[x] = tk.Entry(frame_quantity[x],width=15)
+        entry_x[x]= tk.Entry(frame_quantity[x],width=5)
+        entry_y[x]=tk.Entry(frame_quantity[x],width=5)
+    
         entry_x[x].pack(side=tk.LEFT)
         entry_y[x].pack(side=tk.RIGHT)
-        tick_label.pack()
-        entry_tick_label[x].pack()
+        
+        entry_tick_label[x].pack(side=tk.BOTTOM)
      
         frame4.pack()
         frame_quantity[x].pack()
@@ -101,6 +98,8 @@ def bar_chart(frejm,username):
     entry_quantity['state'] = 'readonly'
     entry_quantity.pack()
     entry_quantity.current(2)
+    tick_label = tk.Label(frejm,width=40,text="Szerokość       Etykieta      Wysokość")
+    tick_label.pack(side=tk.TOP)
 
     #frame_graph=tk.Frame(bg='#FFFFFF')
     #entry1 = tk.Entry(frejm)

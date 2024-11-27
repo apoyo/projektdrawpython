@@ -16,6 +16,7 @@ slices = {}
 colors = {}
 activities = {}
 frame_quantity = {}
+button_choose_color={}
 def create_graph(entry_title,n,username):
     #print(name_axis_x.get())
     #print("Drukuje dlugosc tablicy")
@@ -23,6 +24,7 @@ def create_graph(entry_title,n,username):
     activities_list = []
     color_list=[]
     explode_list=[]
+    
     for x in range (n.get()):
         slices_list.append(int(slices[x].get()))
         activities_list.append(activities[x].get())
@@ -50,19 +52,20 @@ def entryquantity(event_or_value,n,frame4):
        widget.destroy()
     for x in range(n.get()):           
         print(x)
-        frame_quantity[x]=tk.Frame(frame4)
+        frame_quantity[x]=tk.Frame(frame4,width=20)
         slices[x]= tk.Entry(frame_quantity[x],width=2)
         activities[x]=tk.Entry(frame_quantity[x],width=7)
         activities[x]=tk.Entry(frame_quantity[x],width=7)
-        label_x_y=tk.Label(frame_quantity[x],width=2,text="Slices and activities")
-        label_x_y.pack(side=tk.TOP)
-        slices[x].pack(side=tk.LEFT)
-        activities[x].pack(side=tk.RIGHT)
-        button_choose_color = tk.Button(frame_quantity[x],width=5,text="Choose color",command=lambda x=x:choose_color(x))
-        button_choose_color.pack()
+        button_choose_color[x] = tk.Button(frame_quantity[x],width=2,background='#FFF000',command=lambda x=x:choose_color(x))
+        
         def choose_color(x):
             colors[x] = colorchooser.askcolor()[1]
+            button_choose_color[x].config(bg=colors[x])
             print(colors)
+        slices[x].pack(side=tk.LEFT)
+        button_choose_color[x].pack(side=tk.RIGHT)
+        activities[x].pack(side=tk.RIGHT)
+    
         frame4.pack()
         frame_quantity[x].pack()
 
@@ -78,11 +81,14 @@ def pie_chart(frejm,username):
     n=tk.IntVar()
     entry_quantity_label = tk.Label(frejm,text="Liczba przycisków")
     entry_quantity_label.pack()
+    label_x_y=tk.Label(frejm,width=15,text="Slices Activities")
+    
     
     entry_quantity=ttk.Combobox(frejm,width=5, textvariable = n )
     entry_quantity['values'] = (1,2,3,4,5,6,7,8,9,10)
     entry_quantity['state'] = 'readonly'
     entry_quantity.pack()
+    label_x_y.pack(side=tk.TOP, padx=(0, 15))
     entry_quantity.current(2)
 
     frame4 = tk.Frame(frejm)

@@ -6,10 +6,10 @@ from dot_plot import *
 from bar_chart import *
 from line_graph import *
 from pie_chart import *
-#from see_graphs import *
+
 import matplotlib.pyplot as plt
 import numpy as np
-#from PIL import Image, ImageTk
+
 import sqlite3
 from tkinter import filedialog
 import os 
@@ -18,39 +18,26 @@ root = tk.Tk()
 root.geometry("500x500")
 root.title("Rysowanie Wykresów")
 def clearFrame():
-    # destroy all widgets from frame
-    print("CLIRFREJM")
+   
     for widget in frame.winfo_children():
        widget.destroy()
-#image = Image.open("graph.png")
-#resize_image =  image.resize((100,100))
-#img =  ImageTk.PhotoImage(resize_image)
-#image_label = Label(image=img)
-#image_label.image = img
-#image_label.grid(row=0,column=0,padx=(10, 100),pady=(10,100))
 
-#image_label.pack(side="left", fill="both", expand=False)
-#image_label.place(x=200, y=200, height=100, width=100)
-
-#pack, place ,grid
-
-#root.forget()
 def graphchoosen(event):
     global username
     print("Funkcja się uruchamia!")
     if n.get()=="Wykres punktowy":
-        #print('Wykres punktowy')
+       
         dot_plot(frejm,username)
     elif n.get()=="Wykres liniowy":
-        #print('Wykres liniowy')
+     
         line_graph(frejm,username)
     elif n.get()=="Wykres słupkowy":
-        #print('Wykres słupkowy')
+  
         print("drukuje USERNAME PRZY WYBRANIU wykresu słupkowego")
         print(username)
         bar_chart(frejm,username)
     else:
-        #print('Wykres kołowy')
+       
         pie_chart(frejm,username)
 
 root.configure(bg='#333333') 
@@ -58,15 +45,14 @@ def login():
     conn = sqlite3.connect('data.db')
     global username
     username = myEntryLogin.get()
-    print("JUSERNEJM")
-    print(username)
+    
+    
     password = myEntryPassword.get()
     table_create_query= '''CREATE TABLE IF NOT EXISTS logins(id INTEGER PRIMARY KEY,login varchar(25),password varchar(15),last_seen date ) '''
     conn.execute(table_create_query)
     cursorone = conn.cursor()
     query_one = '''SELECT login from logins where login= ?'''
     cursorone.execute(query_one,(username,))
-    #conn.commit()
     result =  cursorone.fetchone()
     print(result)
     if result:
@@ -82,7 +68,8 @@ def login():
            messagebox.showinfo(title="info",message="Jestes Zalogowany")
            frame.destroy()
            print("FINAL PACK")
-           root.configure(bg='#FFFFFF') 
+           root.configure(bg='#FFFFFF')
+           root.geometry("500x650") 
            frame_final.pack()
            graphchoosen(Event)
            
@@ -112,23 +99,12 @@ def login():
             messagebox.showinfo(title="Kursor",message= 'Nie załozono konta')
              
     
-    #password = ''''''
-    #if(myEntryLogin.get()== ,myEntryPassword.get()== )
+  
 
     conn.close()
      
    
-    #if myEntryLogin.get()==username and myEntryPassword.get()==password:
-     #   messagebox.showinfo(title="Login Success",message="Tou successfully logged in.")
-        #print("Successfully logged in")
-    #else:
-    #   messagebox.showinfo(title="Error",message="Invalid")
-    #  print("Invalid login")
-
-
-#frame2 = tk.Frame(bg='#333333')
-#label2 = tk.Label(frame,text = "LOgowanie DWA",font=('Arial',30),bg='#333333',fg='#FFFFFF' )
-#label2.grid(row=0,column=2,sticky="news",columnspan=2,pady=40)
+  
 frejm =tk.Frame(root,bg="WHITE")
 frame = tk.Frame(bg='#333333')
 frame_final = tk.Frame(bg='#FFFFFF')
@@ -145,13 +121,7 @@ myEntryLogin.grid(row=1,column=2,pady=20)
 myEntryPassword.grid(row=2,column=2,pady=20)
 loginButton.grid(row=3,column=2,columnspan=2,pady=30)
 username = myEntryLogin.get()
-#graphType = tk.Listbox(frame_final)
-#graphType.insert(1,"Python")
-#graphType.insert(2,"Python")
-#myEntryLogin.pack(padx=3,pady=3)
-#myEntryPassword.pack(padx=3,pady=3)
-#graphtype = Listbox(frame_final,)
-#loginButton.pack()
+
 n = tk.StringVar()
 graphchoose = ttk.Combobox(frame_final ,width=27, textvariable = n )
 graphchoose['values'] = ('Wykres liniowy','Wykres punktowy','Wykres słupkowy','Wykres kołowy')
@@ -160,14 +130,13 @@ graphchoose.grid(column = 1, row = 5)
 graphchoose.current(1) 
 
 inputtxt = tk.Text(frame, height=3)
-#inputtxt.pack(padx=10,pady=10)
+
 
 myEntry = tk.Entry(frame)
-#myEntry.pack()
+
 
 button = tk.Button(frame, text="Click Me!", font = ('Arial', 18 ))
 
-#button.pack(padx=10,pady=10)
 frame.pack()
 
 

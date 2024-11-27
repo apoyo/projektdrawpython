@@ -57,7 +57,10 @@ def entryquantity(event_or_value,n,frame4):
         frame_quantity[x]=tk.Frame(frame4)
         entry_x[x]= tk.Entry(frame_quantity[x],width=2)
         entry_y[x]=tk.Entry(frame_quantity[x],width=2)
-        label_x_y=tk.Label(frame_quantity[x],width=2,text="X i y")
+        subscript_numbers = "₀₁₂₃₄₅₆₇₈₉"
+        subscript_x = subscript_numbers[x]
+        text1 = f'x{subscript_x} y{subscript_x}'
+        label_x_y=tk.Label(frame_quantity[x],width=3,text=text1)
         label_x_y.pack(side=tk.TOP)
         entry_x[x].pack(side=tk.LEFT)
         entry_y[x].pack(side=tk.RIGHT)

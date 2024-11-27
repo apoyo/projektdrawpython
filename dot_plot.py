@@ -25,24 +25,20 @@ def create_graph(name_axis_x,name_axis_y,entry_title,n,username):
     max_x = max_x+1
     min_y = min_y-1
     max_y = max_y+1
-    print('Maksymalny x',max(values_array_x))
+    
    
     plt.plot(values_array_x,values_array_y, color='green', linestyle='dashed', linewidth = 3,
          marker='o', markerfacecolor='blue', markersize=12)
     
     plt.ylim(min_y-2,max_y+2)
     plt.xlim(min_x-2,max_x+2)
-    #plt.ylim(1,8)
-    #plt.xlim(1,8)
-    print('Minimalny y',)
+       
+    
     plt.xlabel(name_axis_x.get())
     plt.ylabel(name_axis_y.get())
     plt.title(entry_title.get())
     path_of_file = os.getcwd()+ '\\' + username
-    print("Drukuje login")
-    print(username)
-    print("DRUKUJE PATH OF FILE")
-    print(path_of_file)
+     
     plt.rcParams["savefig.directory"] = path_of_file
     filename = path_of_file + '\\' + entry_title.get() + '.png'
     plt.savefig(filename)
@@ -52,12 +48,17 @@ def entryquantity(event_or_value,n,frame4):
 
     for widget in frame4.winfo_children():
        widget.destroy()
+       
+    
     for x in range(n.get()):           
         print(x)
         frame_quantity[x]=tk.Frame(frame4)
         entry_x[x]= tk.Entry(frame_quantity[x],width=2)
         entry_y[x]=tk.Entry(frame_quantity[x],width=2)
-        label_x_y=tk.Label(frame_quantity[x],width=2,text="")
+        subscript_numbers = "₀₁₂₃₄₅₆₇₈₉"
+        subscript_x = subscript_numbers[x]
+        text1 = f'x{subscript_x} y{subscript_x}'
+        label_x_y=tk.Label(frame_quantity[x],width=3,text=text1)
         label_x_y.pack(side=tk.TOP)
         entry_x[x].pack(side=tk.LEFT)
         entry_y[x].pack(side=tk.RIGHT)
@@ -69,13 +70,7 @@ def entryquantity(event_or_value,n,frame4):
 def dot_plot(frejm,username):
     
     print('Wykres punktowy')
-    #root = tk.Tk()
-    #root.geometry("500x500")
-    #root.title("Nie rysowanie Wykresów")
-    #label = tk.Label(root,text = "Cokolwiek xd",font=('Arial',30),bg='#333333',fg='#FFFFFF' )
-    #label.pack(pady=40)
-    #frejm= tk.Frame(bg='#FFFFFF')
-    #frejm.pack_forget()
+   
     for widget in frejm.winfo_children():
         widget.destroy()
     frejm.pack()
@@ -102,11 +97,7 @@ def dot_plot(frejm,username):
     entry_quantity.pack()
     entry_quantity.current(2)
 
-    #frame_graph=tk.Frame(bg='#FFFFFF')
-    #entry1 = tk.Entry(frejm)
-    #ntry2 = tk.Entry(frejm)
-    #entry1.pack()
-    #entry2.pack()
+   
     frame4 = tk.Frame(frejm)
     entryquantity(None,n,frame4)
     entry_quantity.bind('<<ComboboxSelected>>',lambda event: entryquantity(event, n,frame4)) 
@@ -116,8 +107,3 @@ def dot_plot(frejm,username):
     create_graph_button.pack()
     
         
-    #xpoints = np.array([1, 8])
-    #ypoints = np.array([3, 10])
-    
-    #plt.plot(xpoints, ypoints)
-    #plt.show()
