@@ -18,8 +18,7 @@ activities = {}
 frame_quantity = {}
 button_choose_color={}
 def create_graph(entry_title,n,username):
-    #print(name_axis_x.get())
-    #print("Drukuje dlugosc tablicy")
+  
     slices_list = []
     activities_list = []
     color_list=[]
@@ -31,10 +30,7 @@ def create_graph(entry_title,n,username):
         color_list.append(colors[x])
         explode_list.append('0')
     path_of_file = os.getcwd()+ '\\' + username
-    print("Drukuje login")
-    print(username)
-    print("DRUKUJE PATH OF FILE")
-    print(path_of_file)
+   
     plt.rcParams["savefig.directory"] = path_of_file
     
    
@@ -46,7 +42,7 @@ def create_graph(entry_title,n,username):
     plt.savefig(filename)
     plt.show()
 def entryquantity(event_or_value,n,frame4):
-    print('Klantity dziala')
+    
 
     for widget in frame4.winfo_children():
        widget.destroy()
@@ -70,7 +66,7 @@ def entryquantity(event_or_value,n,frame4):
         frame_quantity[x].pack()
 
 def pie_chart(frejm,username):
-    print('Wykres kołowy')
+ 
     for widget in frejm.winfo_children():
         widget.destroy()
     frejm.pack()

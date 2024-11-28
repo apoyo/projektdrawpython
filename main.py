@@ -24,7 +24,7 @@ def clearFrame():
 
 def graphchoosen(event):
     global username
-    print("Funkcja się uruchamia!")
+    
     if n.get()=="Wykres punktowy":
        
         dot_plot(frejm,username)
@@ -33,8 +33,7 @@ def graphchoosen(event):
         line_graph(frejm,username)
     elif n.get()=="Wykres słupkowy":
   
-        print("drukuje USERNAME PRZY WYBRANIU wykresu słupkowego")
-        print(username)
+        
         bar_chart(frejm,username)
     else:
        
@@ -54,9 +53,9 @@ def login():
     query_one = '''SELECT login from logins where login= ?'''
     cursorone.execute(query_one,(username,))
     result =  cursorone.fetchone()
-    print(result)
+    
     if result:
-        print("Przechodzi")
+        
         cursortwo = conn.cursor()
         query_two = '''SELECT password from logins where login=?'''
         cursortwo.execute(query_two,(username,))
@@ -64,7 +63,7 @@ def login():
       
         print(result_final)
         if result_final==password:
-           print("Jestesmy w miejscu docelowym")
+           
            messagebox.showinfo(title="info",message="Jestes Zalogowany")
            frame.destroy()
            print("FINAL PACK")
@@ -79,7 +78,7 @@ def login():
      
     else:
         confirm = messagebox.askyesno(title="",message="Brak konta czy chcesz je założyć ?")
-        print(confirm)
+        
         if confirm:
              
              insert_query ='''INSERT INTO logins (login,password) VALUES(?,?)'''
@@ -92,9 +91,9 @@ def login():
              messagebox.showinfo(title="info",message="Jestes Zalogowany")
              frame.destroy()
              root.configure(bg='#FFFFFF') 
+             root.geometry("500x650") 
              frame_final.pack()
-             if(graphchoose.get()=='Wykres liniowy'):
-                 print("Wykres Liniowy")
+             graphchoosen(Event)
         else:
             messagebox.showinfo(title="Kursor",message= 'Nie załozono konta')
              
